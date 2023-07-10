@@ -48,11 +48,19 @@ def hypervisor_info():
     else:
         print("\n== Hypervisor Info ==")
         print("No hypervisor detected.")
+        
+def user_info():
+    username = get_cmd_output("whoami")
+    user_details = get_cmd_output(f"id {username}")
+    print("\n== User Info ==")
+    print("Current user: ", username)
+    print(user_details)
 
 def main():
     if os.name == "nt":
         print("This extension is only supported on Linux.")
         return
+    user_info()
     cpu_info()
     ram_info()
     gpu_info()
